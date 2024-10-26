@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Vue.js"></script>
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Encuesta de Programación</h1>
+    </header>
+
+    <section id="componente">
+        <h2>¿Te gusta programar?</h2>
+
+        <input type="radio" value="true" name="opcion" v-model="estado">Sí
+        <input type="radio" value="false" name="opcion" v-model="estado">No 
+        
+        
+        <p v-if="estado === 'false'">{{mj}}</p>
+        
+
+        <template v-if="estado === 'true'" >
+            <h2>¿Cuántos años llevas programando?</h2>
+            <input type="number" value="Años" v-model="anios">
+
+            <h2>Cuentanos tu experiencia</h2>
+            <textarea placeholder="Cuentanos tu experiencia" v-model="exp"></textarea>
+
+            <h2>¿Cuántos lenguajes de programación conoces?</h2>
+            Escribe los que sepas: <input type="text" v-model="newLenguajes">
+            <input type="button" value="Agregar" @click="agregar">
+            
+
+            <ul>
+                <li v-for = " i in lenguajes " :key="i">
+                    {{i}}
+                    <input type="button" value="Eliminar" @click="eliminar()">
+                </li>
+            </ul> 
+
+            <input type="button" value="Mostrar Resultados" @click="mostrarResultados">
+
+        <div class="result" v-if="resultado !== ''">
+            <p>{{resultado}}</p>
+        </div>
+            </template>
+        </template>
+    </section>   
+    <script src="script.js"></script>
+</body>
+</html>
